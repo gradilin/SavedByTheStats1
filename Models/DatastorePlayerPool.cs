@@ -113,6 +113,7 @@ namespace GoogleCloudSamples.Models
                     results.EndCursor.ToBase64() : null
             };
         }
+
         // [END list]
         public Player Read(long id)
         {
