@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model GoogleCloudSamples.ViewModels.Players.Index
+
+<h3>Players</h3>
+
+<a href="/Players/Create" class="btn btn-success btn-sm" id="add-book">
+    <i class="glyphicon glyphicon-plus"></i>
+    Add Player
+</a>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Player: @Html.TextBox("SearchString")  <input type="submit" value="Filter" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Player:
+        </th>
+        <th>
+            Position:
+        </th>
+        <th>
+            Goals:
+        </th>
+        <th>
+            Assists:
+        </th>
+        <th>
+            Wins:
+        </th>
+        <th>
+            Shutouts:
+        </th>
+        <th>
+            Total Points:
+        </th>
+    </tr>
+    @foreach (var player in Model.PlayerList.Players)
+    {
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="/Players/Details/@player.id">
+                        <h4>@player.fullName</h4>
+                    </a>
+                </div>
+            </td>
+            <td>
+                @player.position
+            </td>
+            <td>
+                @player.goals
+            </td>
+            <td>
+                @player.assists
+            </td>
+            <td>
+                @player.wins
+            </td>
+            <td>
+                @player.shutouts
+            </td>
+            <td>
+                @player.points
+            </td>
+        </tr>
+    }
+</table>
+
+@if (Model.PlayerList.Players.Count() == 0)
+{
+    <p>No Players Found!</p>
+}
+
+
+

@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model GoogleCloudSamples.ViewModels.Teams.Index
+
+
+<h3>Teams</h3>
+
+@*<a href="/Teams/Create" class="btn btn-success btn-sm" id="add-book">
+    <i class="glyphicon glyphicon-plus"></i>
+    Add Team
+</a>*@
+
+<table class="table">
+    <tr>
+        <th>
+            Team:
+        </th>
+        <th>
+            Goals:
+        </th>
+        <th>
+            Assists:
+        </th>
+        <th>
+            Wins:
+        </th>
+        <th>
+            Shutouts:
+        </th>
+        <th>
+            Total Points:
+        </th>
+    </tr>
+    @foreach (var team in Model.TeamList.Teams)
+    {
+        <tr>
+            <td>
+                <a href="/Teams/Details/@team.TeamId">
+                    <h4>@team.TeamName</h4>
+                    <p>@team.TeamOwner</p>
+                </a>
+            </td>
+            <td>
+                @team.Goals
+            </td>
+            <td>
+                @team.Assists
+            </td>
+            <td>
+                @team.Wins
+            </td>
+            <td>
+                @team.Shutouts
+            </td>
+            <td>
+                @team.Points
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+@if (Model.TeamList.Teams.Count() == 0)
+{
+    <p>No Teams Found!</p>
+}
+
+@if (null != Model.TeamList.NextPageToken)
+{
+    <nav>
+        <ul class="pager">
+            <li><a href="?nextPageToken=@Model.TeamList.NextPageToken">More</a></li>
+        </ul>
+    </nav>
+}

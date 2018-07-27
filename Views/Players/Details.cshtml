@@ -1,0 +1,81 @@
+﻿@model GoogleCloudSamples.Models.Player
+
+<h3>Player</h3>
+<form method="post" action="/Players/Delete/@Model.id"
+      id="deleteForm">
+    @Html.AntiForgeryToken()
+    <div class="btn-group">
+        <a href="/Players/Edit/@Model.id"
+           class="btn btn-primary btn-sm">
+            <i class="glyphicon glyphicon-edit"></i>
+            Edit Player
+        </a>
+        @*<button id="submit" type="submit" class="btn btn-danger btn-sm">
+                <i class="glyphicon glyphicon-trash"></i>
+                Delete Player
+            </button>*@
+    </div>
+</form>
+
+<div class="media">
+    <div class="media-body">
+        <h4> @Html.DisplayFor(model => model.fullName) </h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.jerseyNumber)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.jerseyNumber)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.tierList)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.tierList)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.position)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.position)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.type)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.type)
+            </dd>
+            @if (Model.position.ToUpper() != "GOALIE")
+    {
+        <dt>
+            @Html.DisplayNameFor(model => model.goals)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.goals)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.assists)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.assists)
+        </dd>
+}
+            @if (Model.position.ToUpper() == "GOALIE")
+    {
+        <dt>
+            @Html.DisplayNameFor(model => model.wins)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.wins)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.shutouts)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.shutouts)
+        </dd>
+}
+        </dl>
+    </div>
+</div>

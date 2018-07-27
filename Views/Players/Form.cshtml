@@ -1,0 +1,33 @@
+﻿@model GoogleCloudSamples.ViewModels.Players.Form
+
+<h3>@Model.Action Player</h3>
+<!-- [START form] -->
+<form action="/Players/@Model.FormAction/@Model.Player.id" method="post" id="player-form" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(model => model.Player.fullName)
+        @Html.EditorFor(model => model.Player.fullName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Player.fullName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Player.jerseyNumber)
+        @Html.EditorFor(model => model.Player.jerseyNumber, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Player.jerseyNumber, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Player.position)
+        @Html.EditorFor(model => model.Player.position, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+        @Html.ValidationMessageFor(model => model.Player.position, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Player.tierList)
+        @Html.EditorFor(model => model.Player.tierList, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+        @Html.ValidationMessageFor(model => model.Player.tierList, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+<!-- [END form] -->
